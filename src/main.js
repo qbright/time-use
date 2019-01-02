@@ -6,6 +6,7 @@ import router from "./router";
 import store from "./store";
 
 import api from "./api";
+import './registerServiceWorker'
 
 Vue.config.productionTip = false;
 

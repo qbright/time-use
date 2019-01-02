@@ -129,8 +129,9 @@ export default {
     float: left;
     border: 1px solid #e8e8e8;
     margin: 1px 0;
-    position: relative;
-    left: 1px;
+    // position: relative;
+    // left: 1px;
+    margin-left: -1px;
 
     &.active {
       background: #fff000;
