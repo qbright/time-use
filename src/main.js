@@ -5,10 +5,14 @@ import App from "./App.vue";
 import router from "./router";
 import store from "./store";
 
+import { VueHammer } from "vue2-hammer";
+
 import api from "./api";
-import './registerServiceWorker'
+import "./registerServiceWorker";
 
 Vue.config.productionTip = false;
+
+Vue.use(VueHammer);
 
 Vue.prototype.API = api;
 

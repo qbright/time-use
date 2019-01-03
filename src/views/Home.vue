@@ -5,6 +5,7 @@
         v-for="(it,index) in daySet"
         :key="index"
         class="block-item"
+        v-hammer:tap="onTap(index)"
         :class="{'active':dofy>index}"
       ></div>
     </div>
@@ -33,6 +34,7 @@
 <script>
 // @ is an alias to /src
 import ICountUp from "vue-countup-v2";
+import moment from "moment";
 
 const y = new Date();
 y.setMilliseconds(0);
@@ -78,6 +80,11 @@ export default {
     //   let { data } = await this.API.getTime();
     //   this.t = data.time;
     // },
+    onTap(index) {
+      return () => {
+        console.log(index);
+      };
+    },
     getDayOfTheYear() {
       let t = Date.now() - y;
       return t / (1000 * 3600 * 24);
