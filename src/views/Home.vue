@@ -44,7 +44,15 @@ y.setHours(0);
 y.setMonth(0);
 y.setDate(1);
 
-console.log(y);
+const z = new Date();
+z.setMilliseconds(0);
+z.setSeconds(0);
+z.setMinutes(0);
+z.setHours(0);
+z.setMonth(0);
+z.setDate(1);
+z.setFullYear(z.getFullYear() + 1);
+
 export default {
   name: "home",
   components: {
@@ -52,7 +60,7 @@ export default {
   },
   data() {
     return {
-      daySet: new Array(365),
+      daySet: [],
       year: new Date().getFullYear(),
       opt: {
         useEasing: false,
@@ -69,6 +77,7 @@ export default {
   },
   mounted() {
     // this.getData();
+    this.daySet = new Array(parseInt(this.getDayCountOfTheYear()));
     this.dofy = parseInt(this.getDayOfTheYear()) + 1;
     this.$refs.countup.pauseResume();
     this.startVal = this.calc();
@@ -89,6 +98,10 @@ export default {
       let t = Date.now() - y;
       return t / (1000 * 3600 * 24);
     },
+    getDayCountOfTheYear() {
+      let t = z - y;
+      return t / (1000 * 3600 * 24);
+    },
     loop() {
       setTimeout(() => {
         this.$refs.countup.update(this.calc());
@@ -104,7 +117,8 @@ export default {
 </script>
 <style lang="scss" scoped>
 .home {
-  background: #f9f8f8;
+  // background: #f9f8f8;
+  background: white;
 }
 .tips {
   padding: 15px;
@@ -130,18 +144,19 @@ export default {
   overflow: hidden;
   padding: 10px;
   .block-item {
-    width: 15px;
-    height: 15px;
+    width: 20px;
+    height: 20px;
     display: inline-block;
     float: left;
-    border: 1px solid #e8e8e8;
-    margin: 1px 0;
+    border: 1px solid white;
+    margin: 1px 0 0 0;
+    background: #ebedf0;
     // position: relative;
     // left: 1px;
-    margin-left: -1px;
+    // margin-left: -1px;
 
     &.active {
-      background: #fff000;
+      background: #ffb100;
     }
   }
 }
