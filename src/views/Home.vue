@@ -28,13 +28,19 @@
         <span>今天是今年的第{{dofy}}天</span>
       </div>
     </div>
+
     <div
-      v-hammer:tap="hideCalendar"
       ref="calendar"
       class="calendar"
       v-show="show"
       :class="showClass"
-    >123123</div>
+    >
+      <vue-event-calendar
+        :events="demoEvents"
+        @day-changed="handleDayChanged"
+        @month-changed="handleMonthChanged"
+      ></vue-event-calendar>
+    </div>
   </div>
 </template>
 
@@ -60,6 +66,8 @@ z.setMonth(0);
 z.setDate(1);
 z.setFullYear(z.getFullYear() + 1);
 
+let today = new Date();
+
 export default {
   name: "home",
   components: {
@@ -81,7 +89,26 @@ export default {
       dofy: 0,
       startVal: 0,
       endVal: 0,
-      t: 0
+      t: 0,
+
+      demoEvents: [
+        {
+          date: `${today.getFullYear()}/${today.getMonth() + 1}/15`,
+          title: "Title-1",
+          desc: "longlonglong description"
+        },
+        {
+          date: `${today.getFullYear()}/${today.getMonth() + 1}/24`,
+          title: "Title-2"
+        },
+        {
+          date: `${today.getFullYear()}/${
+            today.getMonth() === 11 ? 1 : today.getMonth() + 2
+          }/06`,
+          title: "Title-3",
+          desc: "description"
+        }
+      ]
     };
   },
   mounted() {
@@ -103,10 +130,12 @@ export default {
     // }, 2000);
   },
   methods: {
-    // async getData() {
-    //   let { data } = await this.API.getTime();
-    //   this.t = data.time;
-    // },
+    handleDayChanged(data) {
+      console.log("date-changed", data);
+    },
+    handleMonthChanged(data) {
+      console.log("month-changed", data);
+    },
     hideCalendar() {
       this.showClass = ["magictime", "swashOut"];
     },
