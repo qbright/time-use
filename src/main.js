@@ -1,6 +1,5 @@
 import "normalize.css";
-// import "magic.css";
-import "./style/magic.min.css";
+import "magic.css/magic.min.css";
 import "./style/style.scss";
 import Vue from "vue";
 import App from "./App.vue";
