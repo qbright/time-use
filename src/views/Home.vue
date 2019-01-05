@@ -28,6 +28,13 @@
         <span>今天是今年的第{{dofy}}天</span>
       </div>
     </div>
+    <div
+      v-hammer:tap="hideCalendar"
+      ref="calendar"
+      class="calendar"
+      v-show="show"
+      :class="showClass"
+    >123123</div>
   </div>
 </template>
 
@@ -60,6 +67,8 @@ export default {
   },
   data() {
     return {
+      show: false,
+      showClass: [],
       daySet: [],
       year: new Date().getFullYear(),
       opt: {
@@ -83,14 +92,28 @@ export default {
     this.startVal = this.calc();
     this.$refs.countup.start();
     this.loop();
+
+    this.$refs.calendar.addEventListener("animationend", e => {
+      if (e.animationName.indexOf("Out") !== -1) {
+        this.show = false;
+      }
+    });
+    // setTimeout(() => {
+    //   this.showClass = ["magictime", "puffIn"];
+    // }, 2000);
   },
   methods: {
     // async getData() {
     //   let { data } = await this.API.getTime();
     //   this.t = data.time;
     // },
+    hideCalendar() {
+      this.showClass = ["magictime", "swashOut"];
+    },
     onTap(index) {
       return () => {
+        this.show = true;
+        this.showClass = ["magictime", "swashIn"];
         console.log(index);
       };
     },
@@ -159,5 +182,16 @@ export default {
       background: #ffb100;
     }
   }
+}
+
+.calendar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: white;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+  box-shadow: 0px 0px 8px 0px #737272;
 }
 </style>

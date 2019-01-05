@@ -1,4 +1,6 @@
 import "normalize.css";
+// import "magic.css";
+import "./style/magic.min.css";
 import "./style/style.scss";
 import Vue from "vue";
 import App from "./App.vue";
@@ -6,7 +8,6 @@ import router from "./router";
 import store from "./store";
 
 import { VueHammer } from "vue2-hammer";
-
 import api from "./api";
 import "./registerServiceWorker";
 
