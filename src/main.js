@@ -13,7 +13,6 @@ import "./registerServiceWorker";
 Vue.config.productionTip = false;
 
 Vue.use(VueHammer);
-alert(123);
 Vue.prototype.API = api;
 
 new Vue({
