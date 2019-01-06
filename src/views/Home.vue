@@ -5,7 +5,6 @@
         v-for="(it,index) in daySet"
         :key="index"
         class="block-item"
-        v-hammer:tap="onTap(index)"
         :class="{'active':dofy>index}"
       ></div>
     </div>
@@ -29,17 +28,14 @@
       </div>
     </div>
 
-    <div
-      ref="calendar"
-      class="calendar"
-      v-show="show"
-      :class="showClass"
-    >
-      <vue-event-calendar
-        :events="demoEvents"
-        @day-changed="handleDayChanged"
-        @month-changed="handleMonthChanged"
-      ></vue-event-calendar>
+    <div ref="calendar" class="calendar" v-show="show" :class="showClass">
+      <div class="calendar-inner">
+        <vue-event-calendar
+          :events="demoEvents"
+          @day-changed="handleDayChanged"
+          @month-changed="handleMonthChanged"
+        ></vue-event-calendar>
+      </div>
     </div>
   </div>
 </template>
@@ -222,5 +218,12 @@ export default {
   height: 100%;
   z-index: 10;
   box-shadow: 0px 0px 8px 0px #737272;
+  .calendar-inner {
+    width: 90%;
+    height: 90%;
+    transform: translate(-50%, 0);
+    position: relative;
+    left: 50%;
+  }
 }
 </style>

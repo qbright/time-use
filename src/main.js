@@ -13,7 +13,7 @@ import "./registerServiceWorker";
 
 Vue.config.productionTip = false;
 
-Vue.use(vueEventCalendar, { locale: "en" });
+Vue.use(vueEventCalendar, { locale: "zh" });
 Vue.use(VueHammer);
 Vue.prototype.API = api;
 
